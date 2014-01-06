@@ -1,0 +1,10 @@
+<?php
+class ClassDelete{
+	
+public function	deleteByOne($table,$dbField,$dbValue){
+$sql="delete from $table where $dbField = '$dbValue'";
+$result_deleted=mysql_query($sql);
+return $result_deleted;
+ }
+}
+?>

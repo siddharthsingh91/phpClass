@@ -1,0 +1,55 @@
+<?php
+ class ClassSql{
+
+public function sqlLimit($startLimit,$endLimit){
+	 $sql =" LIMIT $startLimit,$endLimit";
+	 return $sql;
+	 }
+	 
+
+public function sqlAll($table){
+	$sql="SELECT * FROM `$table`";
+	return $sql;
+	}
+
+public function sqlFindByOne($table,$dbField,$value){
+	$sql="SELECT * FROM `$table` where $dbField='$value'";
+	return $sql;
+	}
+	
+public function sqlFindByOneArray($table,$dbField,$arrayValue){	
+	$sql = "SELECT * FROM `$table` WHERE `$dbField` IN('".implode("','",$arrayValue).'\')'; 
+	return $sql;
+	}
+	
+public function sqlFindByMoreArray($dbField,$arrayValue){	
+	$sql = " AND `$dbField` IN('".implode("','",$arrayValue).'\')';
+	return $sql;
+	}
+	
+public function sqlFindByAndOneMore($dbField,$dbValue){	
+	$sql = "AND `$dbField`='$dbValue'";
+	return $sql;
+	}		
+	
+public function sqlFindAllUnique($table,$dbColumn){
+	$sql="SELECT DISTINCT $dbColumn FROM `$table`";
+	return $sql;
+	}
+
+public function sqlFindByDescLimit($table,$dbColumn,$noLimit){
+	$sql="SELECT * FROM `$table` ORDER BY `$dbColumn` LIMIT $noLimit";
+	return $sql;
+	}
+
+public function sqlDeleteByFindOne($table,$dbColumn,$dbColumnValue){
+	$sql="DELETE FROM `$table` WHERE $dbColumn = $dbColumnValue";
+	return $sql;
+	}	
+	
+public function sqlFindWtDateNewer($table,$colName,$dayIntewrVal,$strtNo,$endNo){
+	$sql="SELECT * FROM `$table` WHERE $colName > DATE_SUB( NOW( ) , INTERVAL $dayIntewrVal DAY ) LIMIT $strtNo , $endNo";
+	return $sql;
+	}	
+ }
+?>

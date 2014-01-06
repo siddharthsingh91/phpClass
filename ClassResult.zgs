@@ -1,0 +1,59 @@
+<?php
+class ClassResult extends ClassSql{
+
+	public function query($query){
+		$sqlResult=mysql_query($query);
+		return $sqlResult;
+		}
+	
+	 public function findByOne($table,$dbField,$value){
+			$sql=$this->sqlFindByOne($table,$dbField,$value);
+			$sqlQuery=$this->query($sql);
+			$result=mysql_fetch_assoc($sqlQuery);
+			return $result;
+			}
+			
+	public function findAllByOneValue($table,$dbField,$value){
+			$valueArray=array();
+			$sql=$this->sqlFindByOne($table,$dbField,$value);
+			$sqlQuery=$this->query($sql);
+			if($sqlQuery){
+			while($result=mysql_fetch_array($sqlQuery)){
+			$valueArray[]=$result;}}else{ echo "Wrong database table is selected"; }
+			return $valueArray;	
+		}			
+			
+			
+		public function selectAll($table){
+			$valueArray=array();
+			$sql=$this->sqlAll($table);
+			$sqlQuery=$this->query($sql);
+			if($sqlQuery){
+			while($result=mysql_fetch_array($sqlQuery)){
+			$valueArray[]=$result;}}else{ echo "Wrong database table is selected"; }
+			return $valueArray;	
+		}	
+			
+			
+			
+			
+			
+		public function selectAllUnique($table,$dbColumn){
+			$valueArray=array();
+			$sql=$this->sqlFindAllUnique($table,$dbColumn);
+			$sqlQuery=$this->query($sql);
+			while($result=mysql_fetch_array($sqlQuery)){
+			$valueArray[]=$result;}
+			return $valueArray;	
+		}	
+		
+		public function findByDescLimit($table,$descField,$noLimit){
+			$sql=$this->sqlFindByDescLimit($table,$descField,$noLimit);
+			$sqlQuery=$this->query($sql);
+			$result=mysql_fetch_assoc($sqlQuery);
+			return $result;
+			}
+		
+	}
+
+?>

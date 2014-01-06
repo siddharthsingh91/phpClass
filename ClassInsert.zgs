@@ -1,0 +1,14 @@
+<?php class ClassInsert{ public function	
+    insertArray($table,$tableField,$value){
+	$sql="INSERT INTO $table(".implode(",",$tableField).")VALUES('".implode("','",$value).'\')';$quey=mysql_query($sql); return $quey; } 
+	
+	
+	public function insertArrayPDO($table,$tableField,$value){
+	$sql="INSERT INTO $table(".implode(",",$tableField).")VALUES('".implode("','",$value).'\')'; 
+	return $sql;
+	 } 
+	
+	
+	
+	}
+?>

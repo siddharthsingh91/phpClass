@@ -1,0 +1,24 @@
+<?php
+class ClassConnectPDO{
+	private $username;
+	private $password;
+	private $host;
+	private $datadase;
+
+public function __construct($host_name,$username_name,$password_db,$db_name) {	
+$this->username=$username_name;
+$this->password=$password_db;
+$this->host=$host_name;
+$this->datadase=$db_name;
+$this->connectWithPDO();
+}
+	
+public function connectWithPDO(){
+try
+  {$db = new PDO('mysql:host='.$this->host.';dbname='.$this->datadase.';charset=utf8', $this->username, $this->password);
+  return $db;
+  }
+  catch(PDOException $e){echo "ERROR IS GENERATED".$e->getMessage();}
+     }
+}
+?>

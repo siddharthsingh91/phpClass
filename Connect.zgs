@@ -1,0 +1,35 @@
+    <?php 
+class Connect{
+	private $username;
+	private $password;
+	private $host;
+	private $datadase;
+	
+	public function __construct($host_name,$username_name,$password_db,$db_name) {	
+	$this->username=$username_name;
+	$this->password=$password_db;
+	$this->host=$host_name;
+	$this->datadase=$db_name;
+	$this->selectDB();
+	}
+	
+	private function connectHost(){
+			$link = mysql_connect($this->host,$this->username,$this->password);
+			if(!$link) {die('Failed to connect to server, Try again later');}else{
+			return $link;}
+			
+		}
+	
+	private function selectDB(){
+		$link=$this->connectHost($this->host,$this->username,$this->password);
+		if($link){ $db = mysql_select_db($this->datadase);
+			if(!$db){ die('No such a database found'); }}
+		}
+		
+	public function closeConnect(){
+			$link=$this->connectHost();
+			mysql_close($link);
+		}
+	
+	}
+?>

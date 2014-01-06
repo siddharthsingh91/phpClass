@@ -1,0 +1,17 @@
+<?php
+class ClassUpdate{
+public function	updateArray($table,$arrayValue,$dbField,$valueForDb){
+			
+			if (count($arrayValue) > 0) {
+			foreach ($arrayValue as $key => $value) {
+			$value = mysql_real_escape_string($value); 
+			$value = "'$value'";
+			$updates[] = "$key = $value";} }
+			
+		$implodeArray = implode(', ', $updates);
+		$sql = ("UPDATE $table SET $implodeArray WHERE $dbField='$valueForDb'"); 
+		echo $sql; 
+		$sqlResult=mysql_query($sql);
+		return $sqlResult;
+	}}
+?>
